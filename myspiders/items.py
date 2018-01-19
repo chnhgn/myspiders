@@ -11,4 +11,9 @@ import scrapy
 class MyspidersItem(scrapy.Item):
     # define the fields for your item here like:
     # name = scrapy.Field()
-    pass
+    name = scrapy.Field()
+    author = scrapy.Field()
+    price = scrapy.Field()
+    stars = scrapy.Field()
+    reviewers = scrapy.Field()
+    rank = scrapy.Field()
