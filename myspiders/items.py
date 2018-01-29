@@ -17,3 +17,16 @@ class MyspidersItem(scrapy.Item):
     stars = scrapy.Field()
     reviewers = scrapy.Field()
     rank = scrapy.Field()
+
+
+class HomeItem(scrapy.Item):
+    
+    campus = scrapy.Field()
+    structure = scrapy.Field()
+    area = scrapy.Field()
+    direction = scrapy.Field()
+    floor = scrapy.Field()
+    build_year = scrapy.Field()
+    position = scrapy.Field()
+    elevator = scrapy.Field()
+    kind = scrapy.Field()
