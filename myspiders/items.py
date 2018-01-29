@@ -30,3 +30,4 @@ class HomeItem(scrapy.Item):
     position = scrapy.Field()
     elevator = scrapy.Field()
     kind = scrapy.Field()
+    price = scrapy.Field()

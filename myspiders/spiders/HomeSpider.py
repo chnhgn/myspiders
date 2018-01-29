@@ -52,6 +52,7 @@ class HomeSpider(CrawlSpider):
         item['position'] = response.xpath('//div[@class="tab-cont-right"]/div[4]/div[2]/div[@class="rcont"]/a[1]/text()').extract_first().strip()
         item['elevator'] = response.xpath('//div[@class="content-item fydes-item"]/div[2]/div[2]/span[@class="rcont"]/text()').extract_first()
         item['kind'] = response.xpath('//div[@class="content-item fydes-item"]/div[2]/div[4]/span[@class="rcont"]/text()').extract_first()
+        item['price'] = response.xpath('//div[@class="trl-item price_esf  sty1"]/i/text()').extract_first()
         
         yield item
         
