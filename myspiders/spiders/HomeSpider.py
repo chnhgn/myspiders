@@ -21,7 +21,7 @@ class HomeSpider(CrawlSpider):
     ]
 
     rules = (
-            Rule(LinkExtractor(allow=('/house/i3\d{1,}'), deny=('/house/i3100')), callback='parse_items'),
+            Rule(LinkExtractor(restrict_xpaths=['//a[@id="PageControl1_hlk_next"]']), callback='parse_items', follow=True),
 #             Rule(LinkExtractor(allow=('/house/i32')), callback='parse_items'),
         )
 
