@@ -33,7 +33,7 @@ class HomeSpider(CrawlSpider):
     def parse_items(self, response):
         print(response.url)
         if 'search.fang.com/captcha-verify' in response.url:
-            self.process_captcha(response.url)
+            yield self.process_captcha(response.url)
         
         selector = Selector(response=response)
         base_url = get_base_url(response)
@@ -49,7 +49,7 @@ class HomeSpider(CrawlSpider):
     def parse_content(self, response):
         
         if 'search.fang.com/captcha-verify' in response.url:
-            self.process_captcha(response.url)
+            yield self.process_captcha(response.url)
         
         item = HomeItem()
         
