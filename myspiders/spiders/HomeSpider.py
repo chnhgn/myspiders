@@ -7,6 +7,9 @@ from myspiders.items import HomeItem
 import json
 from scrapy.utils.response import get_base_url
 from scrapy.utils.url import urljoin_rfc
+from selenium.webdriver.common.by import By
+from selenium import webdriver 
+import time
 
 
 
@@ -28,6 +31,9 @@ class HomeSpider(CrawlSpider):
     
     
     def parse_items(self, response):
+        print(response.url)
+        if 'search.fang.com/captcha-verify' in response.url:
+            self.process_captcha(response.url)
         
         selector = Selector(response=response)
         base_url = get_base_url(response)
@@ -41,6 +47,10 @@ class HomeSpider(CrawlSpider):
             yield scrapy.Request(url=url, callback=self.parse_content)
         
     def parse_content(self, response):
+        
+        if 'search.fang.com/captcha-verify' in response.url:
+            self.process_captcha(response.url)
+        
         item = HomeItem()
         
         item['campus'] = response.xpath('//div[@class="trl-item2 clearfix"]/div[@class="rcont"]/a/text()').extract_first()
@@ -56,7 +66,13 @@ class HomeSpider(CrawlSpider):
         
         yield item
         
+    def process_captcha(self, url):
+        driver = webdriver.Firefox(executable_path='C:\\scnguh\\spider\\geckodriver-v0.19.1-win64\\geckodriver.exe')
+        driver.get(url)
         
+        code = input("Please enter any key to continue...")
+        
+        driver.close()
         
         
         
